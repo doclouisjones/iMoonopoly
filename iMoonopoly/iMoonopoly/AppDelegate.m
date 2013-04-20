@@ -10,6 +10,8 @@
 
 @implementation AppDelegate
 
+MainViewController *myGUIvc;
+
 - (void)dealloc
 {
     [_window release];
@@ -18,9 +20,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //hide status bar
+	[application setStatusBarHidden:YES ];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    //self.window.backgroundColor = [UIColor blackColor];
+    
+	//Set VIEW CONTROLLER and add it to Window
+    myGUIvc = [[[MainViewController alloc] init] autorelease];  //note: this will trigger loading of all the other subviews
+    self.window.rootViewController = myGUIvc;;
+    
+    //
     [self.window makeKeyAndVisible];
     return YES;
 }
