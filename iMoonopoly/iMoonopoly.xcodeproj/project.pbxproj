@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CA4515B31722C6D400F59A4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4515B21722C6D400F59A4D /* UIKit.framework */; };
+		CA4515B51722C6D400F59A4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4515B41722C6D400F59A4D /* Foundation.framework */; };
+		CA4515B71722C6D400F59A4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4515B61722C6D400F59A4D /* CoreGraphics.framework */; };
+		CA4515BD1722C6D400F59A4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA4515BB1722C6D400F59A4D /* InfoPlist.strings */; };
+		CA4515BF1722C6D400F59A4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4515BE1722C6D400F59A4D /* main.m */; };
+		CA4515C31722C6D400F59A4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4515C21722C6D400F59A4D /* AppDelegate.m */; };
+		CA4515C51722C6D500F59A4D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4515C41722C6D500F59A4D /* Default.png */; };
+		CA4515C71722C6D500F59A4D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4515C61722C6D500F59A4D /* Default@2x.png */; };
+		CA4515C91722C6D500F59A4D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4515C81722C6D500F59A4D /* Default-568h@2x.png */; };
+		CA4515D11722C91700F59A4D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4515D01722C91700F59A4D /* MainViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CA4515AF1722C6D400F59A4D /* iMoonopoly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoonopoly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA4515B21722C6D400F59A4D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CA4515B41722C6D400F59A4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CA4515B61722C6D400F59A4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CA4515BA1722C6D400F59A4D /* iMoonopoly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iMoonopoly-Info.plist"; sourceTree = "<group>"; };
+		CA4515BC1722C6D400F59A4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CA4515BE1722C6D400F59A4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CA4515C01722C6D400F59A4D /* iMoonopoly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iMoonopoly-Prefix.pch"; sourceTree = "<group>"; };
+		CA4515C11722C6D400F59A4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CA4515C21722C6D400F59A4D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CA4515C41722C6D500F59A4D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CA4515C61722C6D500F59A4D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CA4515C81722C6D500F59A4D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CA4515CF1722C91700F59A4D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		CA4515D01722C91700F59A4D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA4515AC1722C6D400F59A4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA4515B31722C6D400F59A4D /* UIKit.framework in Frameworks */,
+				CA4515B51722C6D400F59A4D /* Foundation.framework in Frameworks */,
+				CA4515B71722C6D400F59A4D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CA4515A61722C6D400F59A4D = {
+			isa = PBXGroup;
+			children = (
+				CA4515B81722C6D400F59A4D /* iMoonopoly */,
+				CA4515B11722C6D400F59A4D /* Frameworks */,
+				CA4515B01722C6D400F59A4D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA4515B01722C6D400F59A4D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA4515AF1722C6D400F59A4D /* iMoonopoly.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA4515B11722C6D400F59A4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA4515B21722C6D400F59A4D /* UIKit.framework */,
+				CA4515B41722C6D400F59A4D /* Foundation.framework */,
+				CA4515B61722C6D400F59A4D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA4515B81722C6D400F59A4D /* iMoonopoly */ = {
+			isa = PBXGroup;
+			children = (
+				CA4515D21722C92200F59A4D /* Classes */,
+				CA4515B91722C6D400F59A4D /* Supporting Files */,
+			);
+			path = iMoonopoly;
+			sourceTree = "<group>";
+		};
+		CA4515B91722C6D400F59A4D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CA4515BA1722C6D400F59A4D /* iMoonopoly-Info.plist */,
+				CA4515BB1722C6D400F59A4D /* InfoPlist.strings */,
+				CA4515BE1722C6D400F59A4D /* main.m */,
+				CA4515C01722C6D400F59A4D /* iMoonopoly-Prefix.pch */,
+				CA4515C41722C6D500F59A4D /* Default.png */,
+				CA4515C61722C6D500F59A4D /* Default@2x.png */,
+				CA4515C81722C6D500F59A4D /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA4515D21722C92200F59A4D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CA4515C11722C6D400F59A4D /* AppDelegate.h */,
+				CA4515C21722C6D400F59A4D /* AppDelegate.m */,
+				CA4515CF1722C91700F59A4D /* MainViewController.h */,
+				CA4515D01722C91700F59A4D /* MainViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CA4515AE1722C6D400F59A4D /* iMoonopoly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA4515CC1722C6D500F59A4D /* Build configuration list for PBXNativeTarget "iMoonopoly" */;
+			buildPhases = (
+				CA4515AB1722C6D400F59A4D /* Sources */,
+				CA4515AC1722C6D400F59A4D /* Frameworks */,
+				CA4515AD1722C6D400F59A4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iMoonopoly;
+			productName = iMoonopoly;
+			productReference = CA4515AF1722C6D400F59A4D /* iMoonopoly.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CA4515A71722C6D400F59A4D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Luigi Castiglione";
+			};
+			buildConfigurationList = CA4515AA1722C6D400F59A4D /* Build configuration list for PBXProject "iMoonopoly" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CA4515A61722C6D400F59A4D;
+			productRefGroup = CA4515B01722C6D400F59A4D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA4515AE1722C6D400F59A4D /* iMoonopoly */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA4515AD1722C6D400F59A4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA4515BD1722C6D400F59A4D /* InfoPlist.strings in Resources */,
+				CA4515C51722C6D500F59A4D /* Default.png in Resources */,
+				CA4515C71722C6D500F59A4D /* Default@2x.png in Resources */,
+				CA4515C91722C6D500F59A4D /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CA4515AB1722C6D400F59A4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA4515BF1722C6D400F59A4D /* main.m in Sources */,
+				CA4515C31722C6D400F59A4D /* AppDelegate.m in Sources */,
+				CA4515D11722C91700F59A4D /* MainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CA4515BB1722C6D400F59A4D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA4515BC1722C6D400F59A4D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CA4515CA1722C6D500F59A4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CA4515CB1722C6D500F59A4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CA4515CD1722C6D500F59A4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iMoonopoly/iMoonopoly-Prefix.pch";
+				INFOPLIST_FILE = "iMoonopoly/iMoonopoly-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CA4515CE1722C6D500F59A4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iMoonopoly/iMoonopoly-Prefix.pch";
+				INFOPLIST_FILE = "iMoonopoly/iMoonopoly-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CA4515AA1722C6D400F59A4D /* Build configuration list for PBXProject "iMoonopoly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA4515CA1722C6D500F59A4D /* Debug */,
+				CA4515CB1722C6D500F59A4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA4515CC1722C6D500F59A4D /* Build configuration list for PBXNativeTarget "iMoonopoly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA4515CD1722C6D500F59A4D /* Debug */,
+				CA4515CE1722C6D500F59A4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CA4515A71722C6D400F59A4D /* Project object */;
+}
