@@ -23,9 +23,9 @@ MainViewController *myGUIvc;
     
     //hide status bar
 	[application setStatusBarHidden:YES ];
-    
+
+    //
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    //self.window.backgroundColor = [UIColor blackColor];
     
 	//Set VIEW CONTROLLER and add it to Window
     myGUIvc = [[[MainViewController alloc] init] autorelease];  //note: this will trigger loading of all the other subviews

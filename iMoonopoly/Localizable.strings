@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  iMoonopoly
+
+  Created by Luigi Castiglione on 20/04/2013.
+  Copyright (c) 2013 Luigi Castiglione. All rights reserved.
+*/
+
+
+"L_newGame" = "New Game";
+"L_continueGame" = "Continue Game";
+"L_credits" = "Credits";
+"L_versionLabel" = "Ver.:";

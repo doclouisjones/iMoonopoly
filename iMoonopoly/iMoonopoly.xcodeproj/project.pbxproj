@@ -18,6 +18,7 @@
 		CA4515C91722C6D500F59A4D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4515C81722C6D500F59A4D /* Default-568h@2x.png */; };
 		CA4515D11722C91700F59A4D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4515D01722C91700F59A4D /* MainViewController.m */; };
 		CA4515D41722D39C00F59A4D /* images in Resources */ = {isa = PBXBuildFile; fileRef = CA4515D31722D39C00F59A4D /* images */; };
+		CA844B741722F255009D55E7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA844B731722F255009D55E7 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		CA4515CF1722C91700F59A4D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		CA4515D01722C91700F59A4D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		CA4515D31722D39C00F59A4D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		CA844B731722F255009D55E7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		CA4515B91722C6D400F59A4D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CA844B731722F255009D55E7 /* Localizable.strings */,
 				CA4515BA1722C6D400F59A4D /* iMoonopoly-Info.plist */,
 				CA4515BB1722C6D400F59A4D /* InfoPlist.strings */,
 				CA4515BE1722C6D400F59A4D /* main.m */,
@@ -171,6 +174,7 @@
 				CA4515C71722C6D500F59A4D /* Default@2x.png in Resources */,
 				CA4515C91722C6D500F59A4D /* Default-568h@2x.png in Resources */,
 				CA4515D41722D39C00F59A4D /* images in Resources */,
+				CA844B741722F255009D55E7 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +229,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -249,7 +253,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -300,6 +304,7 @@
 				CA4515CE1722C6D500F59A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
