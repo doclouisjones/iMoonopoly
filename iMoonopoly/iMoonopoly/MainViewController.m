@@ -38,8 +38,12 @@ UIView *gameView;
     UIView *toolBarGameView;
     UIButton *homeGameViewButton;
     UIScrollView *mapScrollView;
+    NSMutableArray *buildingsButtons;  //note: buildings are put in UIButtons!
+
 
 //DATA
+//
+NSXMLParser *xmlParser;
 //
 NSString *playerName;
 NSString *playerCompany;
@@ -49,7 +53,8 @@ float playerFounds=0.0; //$
 //
 int selectedLocation=1;   //e.g. 1=Equator, 2=Pole, 3=Whatever!
 //
-//TODO 'MAP STATUS'
+NSMutableArray *buildingsArray;
+NSDictionary *oneBuilding;
 
 
 
@@ -80,6 +85,14 @@ int selectedLocation=1;   //e.g. 1=Equator, 2=Pole, 3=Whatever!
     }
     [self.view setFrame:CGRectMake(0, 0, myW, myH)];
     
+    
+    
+    //DATA - PRE
+	//
+    //TODO, if any
+    
+    
+    
     //BUILD SUBVIEWS
     
     //StarView
@@ -97,7 +110,7 @@ int selectedLocation=1;   //e.g. 1=Equator, 2=Pole, 3=Whatever!
     newGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [newGameButton setFrame:CGRectMake((myW-startViewButtonW)/2, startViewButtonsTop, startViewButtonW, startViewButtonH)];
     [newGameButton setTitle:NSLocalizedString(@"L_newGame", @"New Game") forState:UIControlStateNormal];
-	[newGameButton addTarget:self action:@selector(TBD) forControlEvents:UIControlEventTouchUpInside];
+	[newGameButton addTarget:self action:@selector(GoToStartView) forControlEvents:UIControlEventTouchUpInside];
     [startView addSubview:newGameButton];
     //
     continueGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -167,17 +180,24 @@ int selectedLocation=1;   //e.g. 1=Equator, 2=Pole, 3=Whatever!
         [mapScrollView addSubview:containedMap];
         [mapScrollView setContentSize:containedMap.frame.size];
         [gameView addSubview:mapScrollView];
+    //buildings
+        //TODO
     //
     [gameView setHidden:YES];
     [self.view addSubview:gameView];
     
+    
+    //DATA - AFTER
+	//Note: this is done here beacuse he needs first to create the actual UI items to populate
+    [self BuildBuildings];
+
     
     //
     [super viewDidLoad];
 
     
     //DEBUG:
-    //[self GoToGameView];
+    [self GoToGameView];
     
 }
 
@@ -236,5 +256,128 @@ int selectedLocation=1;   //e.g. 1=Equator, 2=Pole, 3=Whatever!
     
 }
 
+
+
+//Buildings management
+- (void) BuildBuildings {
+    
+    NSLog(@" BuildBuildings ");
+    
+    //and sorry for the pan
+    buildingsArray = [NSMutableArray new];
+    
+    //parse xml
+    xmlParser = [[NSXMLParser alloc] initWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource: @"buildings" ofType: @"xml"]]];
+    [xmlParser setDelegate:self];
+
+    //call xml
+    BOOL success = [xmlParser parse];
+    NSLog(@" Parsed? %i", success);
+    
+}
+
+- (void) DrawBuildings {
+    
+    NSLog(@" DrawBuildings ");
+    
+    int i;
+    UIButton *aButton;
+    UIImage *buildingImage;
+    NSString *image_file_name;
+    
+    //
+    buildingsButtons = [NSMutableArray array];
+    
+    //
+    for (i=0; i<buildingsArray.count; i++) {
+        
+        NSLog(@" create building %i ", i);
+
+        //identify image file
+        image_file_name = [buildingsArray[i] valueForKey:@"name"];
+        //image_file_name = [image_file_name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //remove spaces
+        image_file_name = [image_file_name stringByReplacingOccurrencesOfString:@" " withString:@""];   //remove spaces: this one works
+        image_file_name = [image_file_name lowercaseString];
+        image_file_name = [@"images/ref_" stringByAppendingString:image_file_name];
+        NSLog(@" ...with image: %@", image_file_name);
+        
+        
+        //retrieve image
+        buildingImage = [UIImage imageNamed:image_file_name];
+        
+        //
+        aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [aButton setBackgroundColor:[UIColor clearColor]];
+        [aButton setBackgroundImage:buildingImage forState:UIControlStateNormal];
+        //DEBUG [aButton setFrame:CGRectMake(0, 0, buildingImage.size.width, buildingImage.size.height)];
+        [aButton setFrame:CGRectMake(rand() % 960, rand() % 540, buildingImage.size.width, buildingImage.size.height)];
+        
+        //store building/button
+        [buildingsButtons addObject:aButton];
+        
+        
+        //add building/button to map
+        [mapScrollView addSubview:buildingsButtons[i]];
+        
+        //
+        //[aButton release];
+        //aButton = nil;
+        
+    }
+        
+}
+
+
+//XML Parser
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
+	attributes:(NSDictionary *)attributeDict {
+	
+	if([elementName isEqualToString:@"building"]) {
+
+        //new building found in the XML. let's add it to the array
+        NSLog(@" New building. let's add it to the array.");
+
+        //
+        //Extract the attribute here and add it to it
+        //[buildingsArray addObject:[attributeDict objectForKey:@"name"]];
+        oneBuilding = [NSDictionary dictionaryWithDictionary:attributeDict];
+        
+	}
+	
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    /*TODO
+	if(!currentElementValue)
+		currentElementValue = [[NSMutableString alloc] initWithString:string];
+	else
+		[currentElementValue appendString:string];
+     */
+	//NSLog(@"Processing Value: %@", currentElementValue);
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+	
+	if([elementName isEqualToString:@"buildings"])
+		return;
+	
+	if([elementName isEqualToString:@"building"]) {
+       
+        [buildingsArray addObject:oneBuilding];
+        //[oneBuilding release];
+		//oneBuilding = nil;
+        
+    }
+	//[currentElementValue release];
+	//currentElementValue = nil;
+	
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser {    
+	NSLog(@"parserDidEndDocument:");
+    [self DrawBuildings];
+}
 
 @end
