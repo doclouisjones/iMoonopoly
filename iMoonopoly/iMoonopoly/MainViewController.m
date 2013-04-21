@@ -71,7 +71,7 @@ NSDictionary *oneBuilding;
 
 - (void)viewDidLoad
 {
-    
+                
     //
     float myW = 0.0;
     float myH = 0.0;
@@ -87,6 +87,10 @@ NSDictionary *oneBuilding;
     [self.view setFrame:CGRectMake(0, 0, myW, myH)];
     
     
+    //check for iPhone5
+    NSString *iPhone5Suffix= @"";
+    if (myW==568) iPhone5Suffix = "-568h";
+
     
     //DATA - PRE
 	//
@@ -99,32 +103,39 @@ NSDictionary *oneBuilding;
     //StarView
     //
     startView = [[UIView alloc] initWithFrame:self.view.bounds];
-    UIImageView *startViewbackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"images/background_StartView"]];
+    UIImageView *startViewbackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[@"images/background_StartView" stringByAppendingString:iPhone5Suffix]]];
     [startViewbackground setFrame:CGRectMake(0, 0, myW, myH)];
     [startView addSubview:startViewbackground];
     //
-    float startViewButtonsTop = 40;
+    float startViewButtonsTop = 160;
     float startViewButtonsGap = 10;
     float startViewButtonW = 200;
     float startViewButtonH = 50;
     //
-    newGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //newGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //[newGameButton setTitle:NSLocalizedString(@"L_newGame", @"New Game") forState:UIControlStateNormal];
+    newGameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [newGameButton setBackgroundImage:[UIImage imageNamed:@"images/button_newgame"] forState:UIControlStateNormal];
     [newGameButton setFrame:CGRectMake((myW-startViewButtonW)/2, startViewButtonsTop, startViewButtonW, startViewButtonH)];
-    [newGameButton setTitle:NSLocalizedString(@"L_newGame", @"New Game") forState:UIControlStateNormal];
-	[newGameButton addTarget:self action:@selector(GoToStartView) forControlEvents:UIControlEventTouchUpInside];
+    [newGameButton addTarget:self action:@selector(GoToStartView) forControlEvents:UIControlEventTouchUpInside];
     [startView addSubview:newGameButton];
     //
-    continueGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //continueGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //[continueGameButton setTitle:NSLocalizedString(@"L_continueGame", @"Continue Game") forState:UIControlStateNormal];
+    continueGameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [continueGameButton setBackgroundColor:[UIColor clearColor]];
+    [continueGameButton setBackgroundImage:[UIImage imageNamed:@"images/button_continue"] forState:UIControlStateNormal];
     [continueGameButton setFrame:CGRectMake((myW-startViewButtonW)/2, startViewButtonsTop + startViewButtonsGap + startViewButtonH, startViewButtonW, startViewButtonH)];
-    [continueGameButton setTitle:NSLocalizedString(@"L_continueGame", @"Continue Game") forState:UIControlStateNormal];
 	[continueGameButton addTarget:self action:@selector(GoToGameView) forControlEvents:UIControlEventTouchUpInside];
     //TODO [continueGameButton setHidden:YES];
     [startView addSubview:continueGameButton];
     //
-    creditsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //creditsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //[creditsButton setTitle:NSLocalizedString(@"L_credits", @"Credits") forState:UIControlStateNormal];
+    creditsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [creditsButton setBackgroundImage:[UIImage imageNamed:@"images/button_credits"] forState:UIControlStateNormal];
     [creditsButton setFrame:CGRectMake(myW-80-10, myH-30-10, 80, 30)];
-    [creditsButton setTitle:NSLocalizedString(@"L_credits", @"Credits") forState:UIControlStateNormal];
-	[creditsButton addTarget:self action:@selector(TBD) forControlEvents:UIControlEventTouchUpInside];
+    [creditsButton addTarget:self action:@selector(TBD) forControlEvents:UIControlEventTouchUpInside];
     [startView addSubview:creditsButton];
     //
     verLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, myH-25-5, 200, 25)];
@@ -217,7 +228,7 @@ NSDictionary *oneBuilding;
 
     
     //DEBUG:
-    [self GoToGameView];
+    //[self GoToGameView];
     
 }
 
