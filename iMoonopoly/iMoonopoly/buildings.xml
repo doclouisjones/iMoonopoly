@@ -9,7 +9,9 @@
         monetaryCost="1000"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="20" >
+        requiredTurns="20"
+        x="20"
+        y="220" >
     </building>
     <building
         name="Solar Panel Array"
@@ -19,7 +21,9 @@
         monetaryCost="20"
         outputPower="10"
         regolithCost="0"
-        requiredTurns="2" >
+        requiredTurns="2"
+        x="80"
+        y="110" >
     </building>
     <building
         name="Ice Mine"
@@ -29,7 +33,9 @@
         monetaryCost="20"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="2" >
+        requiredTurns="2"
+        x="200"
+        y="20" >
         <outputResources>
             <resource
                 name="Water"
@@ -46,7 +52,9 @@
         monetaryCost="20"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="4" >
+        requiredTurns="4"
+        x="280"
+        y="220" >
         <outputResources>
             <resource
                 name="Regolith"
@@ -66,7 +74,9 @@
         monetaryCost="100"
         outputPower="50"
         regolithCost="0"
-        requiredTurns="10" >
+        requiredTurns="10"
+        x="170"
+        y="370">
         <requiredResources>
             <resource
                 name="Helium-3"
@@ -82,7 +92,9 @@
         monetaryCost="15"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="4" >
+        requiredTurns="4"
+        x="385"
+        y="70">
         <requiredResources>
             <resource
                 name="Water"
@@ -109,7 +121,9 @@
         monetaryCost="25"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="5" >
+        requiredTurns="5"
+        x="535"
+        y="260" >
         <requiredResources>
             <resource
                 name="Regolith"
@@ -140,7 +154,9 @@
         monetaryCost="30"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="5" >
+        requiredTurns="5"
+        x="570"
+        y="40" >
         <requiredResources>
             <resource
                 name="Hydrogen"
@@ -167,7 +183,9 @@
         monetaryCost="10"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="3" >
+        requiredTurns="3"
+        x="670"
+        y="160" >
         <requiredResources>
             <resource
                 name="Metal"
@@ -190,7 +208,9 @@
         monetaryCost="15"
         outputPower="0"
         regolithCost="0"
-        requiredTurns="6" >
+        requiredTurns="6"
+        x="570"
+        y="380" >
         <requiredResources>
             <resource
                 name="Metal"

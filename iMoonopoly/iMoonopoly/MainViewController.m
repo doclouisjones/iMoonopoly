@@ -310,7 +310,11 @@ NSDictionary *oneBuilding;
         [aButton setBackgroundColor:[UIColor clearColor]];
         [aButton setBackgroundImage:buildingImage forState:UIControlStateNormal];
         //DEBUG [aButton setFrame:CGRectMake(0, 0, buildingImage.size.width, buildingImage.size.height)];
-        [aButton setFrame:CGRectMake(rand() % 960, rand() % 540, buildingImage.size.width, buildingImage.size.height)];
+        //DEBUG [aButton setFrame:CGRectMake(rand() % 960, rand() % 540, buildingImage.size.width, buildingImage.size.height)];
+        [aButton setFrame:CGRectMake([[buildingsArray[i] valueForKey:@"x"] floatValue],
+                                     [[buildingsArray[i] valueForKey:@"y"] floatValue],
+                                      buildingImage.size.width,
+                                      buildingImage.size.height)];
         
         //store building/button
         [buildingsButtons addObject:aButton];
