@@ -13,3 +13,4 @@
 "L_versionLabel" = "Ver.:";
 "L_ConstructBuilding" = "Construct building...";
 "L_Production" = "Production";
+"L_BuildingLevel" = "Building level: ";

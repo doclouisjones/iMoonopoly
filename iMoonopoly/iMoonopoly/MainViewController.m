@@ -65,7 +65,7 @@ int selectedLocation=1;   //e.g. 1=Equator, 2=Pole, 3=Whatever!
 int currentSelectedBuildIndex=-1;
 //
 NSMutableArray *buildingsArray;
-NSDictionary *oneBuilding;
+NSMutableDictionary *oneBuilding;
 
 
 //MUSIC
@@ -305,7 +305,7 @@ AVAudioPlayer *myMusicPlayer;
 
     
     //DEBUG:
-    [self GoToGameView];
+    //[self GoToGameView];
     
 }
 
@@ -386,6 +386,9 @@ AVAudioPlayer *myMusicPlayer;
     //dscription
     [buildingDetailsDescription setText:[buildingsArray[my_index] valueForKey:@"info"]];
     
+    //level
+    [buildingDetailsConstructionLevel setText:[NSLocalizedString(@"L_BuildingLevel", @"Building level:") stringByAppendingFormat:@"%i", [[buildingsArray[my_index] valueForKey:@"BuildingLevel"] integerValue]]];
+
     //show view
     [buildingDetailsView setHidden:NO];
     [closeDetailsView setHidden:NO];
@@ -464,7 +467,6 @@ AVAudioPlayer *myMusicPlayer;
         //store building/button
         [buildingsButtons addObject:aButton];
         
-        
         //add building/button to map
         if (i>0) [buildingsButtons[i] setAlpha:.5]; //DEBUG
         //DEBUG if (i>4) [buildingsButtons[i] setAlpha:.0];
@@ -480,7 +482,7 @@ AVAudioPlayer *myMusicPlayer;
 
 - (void) OpenBuildingDetails: (id) sender {
 
-    //Note, a Buton called this
+    //Note, a Button called this
     //Which button? check the tag property
     UIButton *senderButton = sender;
     NSLog(@" PRESSED ON %i", senderButton.tag);
@@ -495,6 +497,15 @@ AVAudioPlayer *myMusicPlayer;
 
 - (void) buildingLevelUp {
     NSLog(@" Level Up Building: %i", currentSelectedBuildIndex);
+
+    //retrieve old building level
+    int my_level = [[buildingsArray[currentSelectedBuildIndex] valueForKey:@"BuildingLevel"] integerValue];
+    my_level++;
+    [buildingsArray[currentSelectedBuildIndex] setValue:[NSNumber numberWithInt:my_level] forKey:@"BuildingLevel"];
+    
+    //update detaield view
+    [buildingDetailsConstructionLevel setText:[NSLocalizedString(@"L_BuildingLevel", @"Building level:") stringByAppendingFormat:@"%i", my_level]];
+    
 }
 
 
@@ -511,7 +522,10 @@ AVAudioPlayer *myMusicPlayer;
         //
         //Extract the attribute here and add it to it
         //[buildingsArray addObject:[attributeDict objectForKey:@"name"]];
-        oneBuilding = [NSDictionary dictionaryWithDictionary:attributeDict];
+        oneBuilding = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
+        
+        //live properties
+        [oneBuilding setValue:[NSNumber numberWithInt:0] forKey:@"BuildingLevel"];
         
 	}
 	
