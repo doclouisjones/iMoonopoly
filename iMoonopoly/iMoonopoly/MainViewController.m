@@ -313,7 +313,7 @@ AVAudioPlayer *myMusicPlayer;
 
     
     //DEBUG:
-    //[self GoToGameView];
+    [self GoToGameView];
     
 }
 
@@ -440,7 +440,7 @@ AVAudioPlayer *myMusicPlayer;
     NSString *image_file_name;
     
     //
-    buildingsButtons = [NSMutableArray array];
+    buildingsButtons = [NSMutableArray new];
     
     //
     for (i=0; i<buildingsArray.count; i++) {
@@ -473,12 +473,11 @@ AVAudioPlayer *myMusicPlayer;
         [aButton addTarget:self action:@selector(OpenBuildingDetails:) forControlEvents:UIControlEventTouchUpInside];
         
         //store building/button
-        [buildingsButtons addObject:aButton];
+        [buildingsButtons setObject:aButton atIndexedSubscript:i];
         
         //add building/button to map
-        if (i>0) [buildingsButtons[i] setAlpha:.5]; //DEBUG
-        //DEBUG if (i>4) [buildingsButtons[i] setAlpha:.0];
-        [mapScrollView addSubview:buildingsButtons[i]];
+        if (i>0) [[buildingsButtons objectAtIndexedSubscript:i] setAlpha:.5];
+        [mapScrollView addSubview:[buildingsButtons objectAtIndexedSubscript:i]];
         
         //TODO:
         //overlap ordered by Y
@@ -488,7 +487,24 @@ AVAudioPlayer *myMusicPlayer;
         //aButton = nil;
         
     }
-        
+                        
+}
+
+- (void) RefreshBuildingsAlpha {
+    NSLog(@" RefreshBuildingsAlpha "); 
+    int i;
+    UIButton *tmpButton;
+    for (i=1; i<buildingsArray.count; i++) {
+        tmpButton = [buildingsButtons objectAtIndexedSubscript:i];
+        NSLog(@" BUILDING LEVEL: %i", [[buildingsArray[i] valueForKey:@"BuildingLevel"] integerValue]);
+        if ([[buildingsArray[i] valueForKey:@"BuildingLevel"] integerValue]>0) {
+            NSLog(@" trying Alpha 1");
+            [tmpButton setAlpha:1.0];
+        } else {
+            NSLog(@" trying Alpha 0");
+            [buildingsButtons[i] setAlpha:0.4];
+        }
+    }
 }
 
 - (void) OpenBuildingDetails: (id) sender {
@@ -517,6 +533,9 @@ AVAudioPlayer *myMusicPlayer;
     //update detaield view
     [buildingDetailsConstructionLevel setText:[NSLocalizedString(@"L_BuildingLevel", @"Building level:") stringByAppendingFormat:@"%i", my_level]];
     
+    //
+    [self RefreshBuildingsAlpha];
+    
 }
 
 
@@ -537,6 +556,9 @@ AVAudioPlayer *myMusicPlayer;
         
         //live properties
         [oneBuilding setValue:[NSNumber numberWithInt:0] forKey:@"BuildingLevel"];
+        
+        //moonbase has level 1 at the beginning
+        if ([[oneBuilding valueForKey:@"name"] isEqualToString:@"Moon Base"]) [oneBuilding setValue:[NSNumber numberWithInt:1] forKey:@"BuildingLevel"];
         
 	}
 	
