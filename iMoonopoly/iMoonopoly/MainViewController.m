@@ -41,6 +41,14 @@ UIView *gameView;
     NSMutableArray *buildingsButtons;  //note: buildings are put in UIButtons!
 UIView *buildingDetailsView;
     UIButton *closeDetailsView;
+    UIImageView *buildingDetailsImage;
+    UITextView *buildingDetailsDescription;
+    float buildingDetailsImageWidth, buildingDetailsImageHeight;
+    float buildingDetailsImageBorder;
+    UIButton *buildingDetailsBuildButton;
+    UILabel *buildingDetailsConstructionLevel;
+    UISwitch *buildingDetailsProductionSwitch;
+    UILabel *buildingDetailsProductionLabel;
 
 //DATA
 //
@@ -53,6 +61,7 @@ NSString *playerLocation;
 float playerFounds=0.0; //$
 //
 int selectedLocation=1;   //e.g. 1=Equator, 2=Pole, 3=Whatever!
+int currentSelectedBuildIndex=-1;
 //
 NSMutableArray *buildingsArray;
 NSDictionary *oneBuilding;
@@ -89,7 +98,7 @@ NSDictionary *oneBuilding;
     
     //check for iPhone5
     NSString *iPhone5Suffix= @"";
-    if (myW==568) iPhone5Suffix = "-568h";
+    if (myW==568) iPhone5Suffix = @"-568h";
 
     
     //DATA - PRE
@@ -158,7 +167,7 @@ NSDictionary *oneBuilding;
     //game View
     //
     gameView = [[UIView alloc] initWithFrame:self.view.bounds];
-    UIImageView *backgroundGameView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"images/background_GameView"]];
+    UIImageView *backgroundGameView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[@"images/background_GameView" stringByAppendingString:iPhone5Suffix]]];
     [backgroundGameView setFrame:CGRectMake(0, 0, myW, myH)];
     [gameView addSubview:backgroundGameView];
     //
@@ -173,6 +182,7 @@ NSDictionary *oneBuilding;
     //
     toolBarGameView = [[UIView alloc] initWithFrame: CGRectMake(myW - (gameViewButtonSizeW+gameViewButtonBorder*2), 0, gameViewButtonSizeW+gameViewButtonBorder*2, myH)];
     [toolBarGameView setBackgroundColor:[UIColor blackColor]];
+    [toolBarGameView setAlpha:.6];
     //
     homeGameViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [homeGameViewButton setBackgroundColor:[UIColor clearColor]];
@@ -185,37 +195,91 @@ NSDictionary *oneBuilding;
     //
     //map sub-view
         UIImageView *containedMap = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"images/background_location_1.jpg"]] autorelease];
-        //mapScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, myW, myH)];
-        mapScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, myW - toolBarGameView.frame.size.width, myH)];
+        mapScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, myW, myH)];
+        //mapScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, myW - toolBarGameView.frame.size.width, myH)];
         [mapScrollView setBackgroundColor:[UIColor blackColor]];
         [mapScrollView setBounces:NO];
         [mapScrollView addSubview:containedMap];
         [mapScrollView setContentSize:containedMap.frame.size];
         [gameView addSubview:mapScrollView];
     //buildings
-        //TODO
+        //see later
+    //
+    [gameView bringSubviewToFront:toolBarGameView];
     //
     [gameView setHidden:YES];
     [self.view addSubview:gameView];
     
     
     //building details view
-    float floatingViewBorder = 30.0;
-    buildingDetailsView = [[UIView alloc] initWithFrame:CGRectMake(floatingViewBorder, floatingViewBorder, myW - floatingViewBorder*2, myH - floatingViewBorder*2)];
+    //float floatingViewBorder = 20.0;
+    //buildingDetailsView = [[UIView alloc] initWithFrame:CGRectMake(floatingViewBorder, floatingViewBorder, myW - floatingViewBorder*2, myH - floatingViewBorder*2)];
+    buildingDetailsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, myW, myH)];
     [buildingDetailsView setHidden:YES];
-    [buildingDetailsView setBackgroundColor:[UIColor blackColor]];
-    UIImageView *backgroundDetails = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"images/background_GameView"]];
+    [buildingDetailsView setBackgroundColor:[UIColor grayColor]];
+    UIImageView *backgroundDetails = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[@"images/background_GameView" stringByAppendingString:iPhone5Suffix]]];
     [buildingDetailsView addSubview:backgroundDetails];
     [backgroundDetails setFrame:CGRectMake(0, 0, buildingDetailsView.frame.size.width, buildingDetailsView.frame.size.height)];
     [self.view addSubview:buildingDetailsView];
         //
-    closeDetailsView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeDetailsView setBackgroundColor:[UIColor clearColor]];
-    [closeDetailsView setBackgroundImage:[UIImage imageNamed:@"images/CloseButton"] forState:UIControlStateNormal];
-    [closeDetailsView setFrame:CGRectMake(0, 0, 40, 40)];
-    [closeDetailsView setFrame: CGRectMake(buildingDetailsView.frame.origin.x-20, buildingDetailsView.frame.origin.y-20, 40, 40)];
-    [closeDetailsView setHidden:YES];
-    [self.view addSubview:closeDetailsView];
+        closeDetailsView = [UIButton buttonWithType:UIButtonTypeCustom];
+        [closeDetailsView setBackgroundColor:[UIColor clearColor]];
+        [closeDetailsView setBackgroundImage:[UIImage imageNamed:@"images/CloseButton"] forState:UIControlStateNormal];
+        //[closeDetailsView setFrame: CGRectMake(buildingDetailsView.frame.origin.x-13, buildingDetailsView.frame.origin.y-13, 25, 25)];
+        [closeDetailsView setFrame: CGRectMake(myW-40, 15, 25, 25)];
+        [closeDetailsView addTarget:self action:@selector(CloseDetailsView) forControlEvents:UIControlEventTouchUpInside];
+        [closeDetailsView setHidden:YES];
+        [self.view addSubview:closeDetailsView];
+        //
+        buildingDetailsImageWidth = 280;
+        buildingDetailsImageHeight = 200;
+        buildingDetailsImageBorder = 10;
+        buildingDetailsImage = [[UIImageView alloc] initWithFrame:CGRectMake(buildingDetailsImageBorder, buildingDetailsImageBorder, buildingDetailsImageWidth, buildingDetailsImageHeight)];
+        //DEBUG [detailBuildingImage setBackgroundColor:[UIColor blueColor]];
+        [buildingDetailsView addSubview:buildingDetailsImage];
+        //
+        buildingDetailsDescription = [[UITextView alloc] initWithFrame:CGRectMake(buildingDetailsImageBorder,
+                                                                             buildingDetailsImageBorder*2 + buildingDetailsImageHeight,
+                                                                             buildingDetailsView.frame.size.width-20,
+                                                                             buildingDetailsView.frame.size.height-220-10)];
+        //DEBUG [buildingDetailsDescription setBackgroundColor:[UIColor redColor]];
+        [buildingDetailsDescription setBackgroundColor:[UIColor clearColor]];
+        [buildingDetailsDescription setTextColor:[UIColor whiteColor]];
+        [buildingDetailsDescription setFont:[UIFont italicSystemFontOfSize:16]];
+        [buildingDetailsView addSubview:buildingDetailsDescription];
+        //
+        buildingDetailsConstructionLevel = [[UILabel alloc] initWithFrame:CGRectMake(buildingDetailsImageBorder*2 + buildingDetailsImageWidth,
+                                                                                 buildingDetailsImageBorder + 90,
+                                                                                 180,
+                                                                                 25)];
+        [buildingDetailsConstructionLevel setBackgroundColor:[UIColor clearColor]];
+        [buildingDetailsConstructionLevel setTextColor:[UIColor whiteColor]];
+        [buildingDetailsConstructionLevel setText:@"Building level: 0"];
+        [buildingDetailsView addSubview:buildingDetailsConstructionLevel];
+        //
+        buildingDetailsBuildButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [buildingDetailsBuildButton setTitle:NSLocalizedString(@"L_ConstructBuilding", "Construct building") forState:UIControlStateNormal];
+        [buildingDetailsBuildButton setFrame:CGRectMake(buildingDetailsConstructionLevel.frame.origin.x,
+                                                        buildingDetailsImageBorder + 130,
+                                                        160,
+                                                        25)];
+        [buildingDetailsBuildButton addTarget:self action:@selector(buildingLevelUp) forControlEvents:UIControlEventTouchUpInside];
+        [buildingDetailsView addSubview:buildingDetailsBuildButton];
+        //
+        buildingDetailsProductionSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(buildingDetailsConstructionLevel.frame.origin.x,
+                                                                                    buildingDetailsImageBorder + 50,
+                                                                                    40,
+                                                                                    40)];
+        [buildingDetailsView addSubview:buildingDetailsProductionSwitch];
+        //
+        buildingDetailsProductionLabel = [[UILabel alloc] initWithFrame:CGRectMake(buildingDetailsProductionSwitch.frame.origin.x + buildingDetailsProductionSwitch.frame.size.width + 5,
+                                                                                   buildingDetailsProductionSwitch.frame.origin.y,
+                                                                                   100, 26)];
+        [buildingDetailsProductionLabel setBackgroundColor:[UIColor clearColor]];
+        [buildingDetailsProductionLabel setTextColor:[UIColor whiteColor]];
+        [buildingDetailsProductionLabel setText:NSLocalizedString(@"L_Production", "Production")];
+        [buildingDetailsView addSubview:buildingDetailsProductionLabel];
+
     
     
     //DATA - AFTER
@@ -228,7 +292,7 @@ NSDictionary *oneBuilding;
 
     
     //DEBUG:
-    //[self GoToGameView];
+    [self GoToGameView];
     
 }
 
@@ -290,12 +354,35 @@ NSDictionary *oneBuilding;
 - (void) ShowBuildingDetailsForIndex: (int) my_index {
     
     //set view
+
+    //image
+    //identify image file
+    NSString *image_file_name;
+    image_file_name = [buildingsArray[my_index] valueForKey:@"name"];
+    image_file_name = [image_file_name stringByReplacingOccurrencesOfString:@" " withString:@"_"];   //remove spaces: this one works
+    image_file_name = [image_file_name lowercaseString];
+    image_file_name = [@"images/ref_" stringByAppendingString:image_file_name];
+    //actual image
+    UIImage *imageBuilding = [UIImage imageNamed:image_file_name];
+    //resize preview
+    [buildingDetailsImage setFrame:CGRectMake(buildingDetailsImageBorder + (buildingDetailsImageWidth-imageBuilding.size.width)/2,
+                                              buildingDetailsImageBorder + (buildingDetailsImageHeight-imageBuilding.size.height)/2,
+                                              imageBuilding.size.width, imageBuilding.size.height)];
+    [buildingDetailsImage setImage:imageBuilding];
+    
+    //dscription
+    [buildingDetailsDescription setText:[buildingsArray[my_index] valueForKey:@"info"]];
     
     //show view
     [buildingDetailsView setHidden:NO];
     [closeDetailsView setHidden:NO];
     [self.view bringSubviewToFront:closeDetailsView];
     
+}
+
+- (void) CloseDetailsView {
+    [buildingDetailsView setHidden:YES];
+    [closeDetailsView setHidden:YES];
 }
 
 
@@ -339,7 +426,7 @@ NSDictionary *oneBuilding;
         //identify image file
         image_file_name = [buildingsArray[i] valueForKey:@"name"];
         //image_file_name = [image_file_name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //remove spaces
-        image_file_name = [image_file_name stringByReplacingOccurrencesOfString:@" " withString:@""];   //remove spaces: this one works
+        image_file_name = [image_file_name stringByReplacingOccurrencesOfString:@" " withString:@"_"];   //remove spaces: this one works
         image_file_name = [image_file_name lowercaseString];
         image_file_name = [@"images/ref_" stringByAppendingString:image_file_name];
         NSLog(@" ...with image: %@", image_file_name);
@@ -366,7 +453,7 @@ NSDictionary *oneBuilding;
         
         
         //add building/button to map
-        //DEBUG if (i>0) [buildingsButtons[i] setAlpha:.5];
+        if (i>0) [buildingsButtons[i] setAlpha:.5]; //DEBUG
         //DEBUG if (i>4) [buildingsButtons[i] setAlpha:.0];
         [mapScrollView addSubview:buildingsButtons[i]];
         
@@ -379,15 +466,23 @@ NSDictionary *oneBuilding;
 }
 
 - (void) OpenBuildingDetails: (id) sender {
+
     //Note, a Buton called this
     //Which button? check the tag property
     UIButton *senderButton = sender;
     NSLog(@" PRESSED ON %i", senderButton.tag);
+
+    //store index to current selectedBuilding
+    currentSelectedBuildIndex = senderButton.tag;
     
-    [self ShowBuildingDetailsForIndex:senderButton.tag];
+    //
+    [self ShowBuildingDetailsForIndex:currentSelectedBuildIndex];
     
 }
 
+- (void) buildingLevelUp {
+    NSLog(@" Level Up Building: %i", currentSelectedBuildIndex);
+}
 
 
 //XML Parser
