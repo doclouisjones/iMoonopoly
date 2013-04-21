@@ -88,7 +88,7 @@ AVAudioPlayer *myMusicPlayer;
 {
  
     //start music
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sounds/moonloop_music" ofType:@"wav"];
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sounds/moonloop_music" ofType:@"mp3"];
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
     myMusicPlayer =	[[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
     [myMusicPlayer setDelegate:self];

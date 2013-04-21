@@ -31,6 +31,9 @@ MainViewController *myGUIvc;
     myGUIvc = [[[MainViewController alloc] init] autorelease];  //note: this will trigger loading of all the other subviews
     self.window.rootViewController = myGUIvc;;
     
+    //video output
+    if([[UIScreen screens]count] > 1) self.window.screen = [[UIScreen screens] objectAtIndex:1];
+
     //
     [self.window makeKeyAndVisible];
     return YES;
