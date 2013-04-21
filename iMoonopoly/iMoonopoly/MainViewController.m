@@ -39,6 +39,8 @@ UIView *gameView;
     UIButton *homeGameViewButton;
     UIScrollView *mapScrollView;
     NSMutableArray *buildingsButtons;  //note: buildings are put in UIButtons!
+    UILabel *fundsLabel;
+    //TODO UILabel *dateLabel;
 UIView *buildingDetailsView;
     UIButton *closeDetailsView;
     UIImageView *buildingDetailsImage;
@@ -217,6 +219,12 @@ AVAudioPlayer *myMusicPlayer;
         [gameView addSubview:mapScrollView];
     //buildings
         //see later
+    //funds
+        fundsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 220, 20)];
+        [fundsLabel setBackgroundColor:[UIColor clearColor]];
+        [fundsLabel setTextColor:[UIColor whiteColor]];
+        [fundsLabel setText:@"funds: 245.124.350 $"];
+        [gameView addSubview:fundsLabel];
     //
     [gameView bringSubviewToFront:toolBarGameView];
     //
@@ -471,6 +479,9 @@ AVAudioPlayer *myMusicPlayer;
         if (i>0) [buildingsButtons[i] setAlpha:.5]; //DEBUG
         //DEBUG if (i>4) [buildingsButtons[i] setAlpha:.0];
         [mapScrollView addSubview:buildingsButtons[i]];
+        
+        //TODO:
+        //overlap ordered by Y
         
         //
         //[aButton release];
