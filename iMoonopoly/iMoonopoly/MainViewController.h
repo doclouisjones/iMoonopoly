@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface MainViewController : UIViewController <NSXMLParserDelegate>
+@interface MainViewController : UIViewController <NSXMLParserDelegate, AVAudioPlayerDelegate>
 
 @end

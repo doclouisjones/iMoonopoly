@@ -20,6 +20,9 @@
 		CA4515D41722D39C00F59A4D /* images in Resources */ = {isa = PBXBuildFile; fileRef = CA4515D31722D39C00F59A4D /* images */; };
 		CA844B741722F255009D55E7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA844B731722F255009D55E7 /* Localizable.strings */; };
 		CAA40002172321E20037F9DF /* buildings.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAA40001172321E20037F9DF /* buildings.xml */; };
+		CADAF3611723F8300044497E /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = CADAF3601723F8300044497E /* sounds */; };
+		CADAF3631723F8F20044497E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADAF3621723F8F20044497E /* AudioToolbox.framework */; };
+		CADAF3651723F9870044497E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADAF3641723F9870044497E /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,9 @@
 		CA4515D31722D39C00F59A4D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		CA844B731722F255009D55E7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../Localizable.strings; sourceTree = "<group>"; };
 		CAA40001172321E20037F9DF /* buildings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = buildings.xml; path = iMoonopoly/buildings.xml; sourceTree = "<group>"; };
+		CADAF3601723F8300044497E /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		CADAF3621723F8F20044497E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CADAF3641723F9870044497E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CADAF3651723F9870044497E /* AVFoundation.framework in Frameworks */,
+				CADAF3631723F8F20044497E /* AudioToolbox.framework in Frameworks */,
 				CA4515B31722C6D400F59A4D /* UIKit.framework in Frameworks */,
 				CA4515B51722C6D400F59A4D /* Foundation.framework in Frameworks */,
 				CA4515B71722C6D400F59A4D /* CoreGraphics.framework in Frameworks */,
@@ -78,6 +86,8 @@
 		CA4515B11722C6D400F59A4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CADAF3641723F9870044497E /* AVFoundation.framework */,
+				CADAF3621723F8F20044497E /* AudioToolbox.framework */,
 				CA4515B21722C6D400F59A4D /* UIKit.framework */,
 				CA4515B41722C6D400F59A4D /* Foundation.framework */,
 				CA4515B61722C6D400F59A4D /* CoreGraphics.framework */,
@@ -88,6 +98,7 @@
 		CA4515B81722C6D400F59A4D /* iMoonopoly */ = {
 			isa = PBXGroup;
 			children = (
+				CADAF3601723F8300044497E /* sounds */,
 				CA4515D31722D39C00F59A4D /* images */,
 				CA4515D21722C92200F59A4D /* Classes */,
 				CA4515B91722C6D400F59A4D /* Supporting Files */,
@@ -187,6 +198,7 @@
 				CA4515D41722D39C00F59A4D /* images in Resources */,
 				CA844B741722F255009D55E7 /* Localizable.strings in Resources */,
 				CAA40002172321E20037F9DF /* buildings.xml in Resources */,
+				CADAF3611723F8300044497E /* sounds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

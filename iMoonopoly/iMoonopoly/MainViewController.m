@@ -50,6 +50,7 @@ UIView *buildingDetailsView;
     UISwitch *buildingDetailsProductionSwitch;
     UILabel *buildingDetailsProductionLabel;
 
+
 //DATA
 //
 NSXMLParser *xmlParser;
@@ -67,6 +68,9 @@ NSMutableArray *buildingsArray;
 NSDictionary *oneBuilding;
 
 
+//MUSIC
+AVAudioPlayer *myMusicPlayer;
+
 
 //
 /*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -80,7 +84,16 @@ NSDictionary *oneBuilding;
 
 - (void)viewDidLoad
 {
-                
+ 
+    //start music
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sounds/moonloop_music" ofType:@"wav"];
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+    myMusicPlayer =	[[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+    [myMusicPlayer setDelegate:self];
+    [fileURL release];
+    [myMusicPlayer prepareToPlay];
+    [myMusicPlayer play];
+
     //
     float myW = 0.0;
     float myH = 0.0;
@@ -536,5 +549,14 @@ NSDictionary *oneBuilding;
 	NSLog(@"parserDidEndDocument:");
     [self DrawBuildings];
 }
+
+
+//MUSIC
+- (void) audioPlayerDidFinishPlaying: (AVAudioPlayer *) player successfully: (BOOL) flag {
+    if (flag == YES) {
+        [myMusicPlayer play];
+    }
+}
+
 
 @end
