@@ -39,7 +39,8 @@ UIView *gameView;
     UIButton *homeGameViewButton;
     UIScrollView *mapScrollView;
     NSMutableArray *buildingsButtons;  //note: buildings are put in UIButtons!
-
+UIView *buildingDetailsView;
+    UIButton *closeDetailsView;
 
 //DATA
 //
@@ -187,6 +188,25 @@ NSDictionary *oneBuilding;
     [self.view addSubview:gameView];
     
     
+    //building details view
+    float floatingViewBorder = 30.0;
+    buildingDetailsView = [[UIView alloc] initWithFrame:CGRectMake(floatingViewBorder, floatingViewBorder, myW - floatingViewBorder*2, myH - floatingViewBorder*2)];
+    [buildingDetailsView setHidden:YES];
+    [buildingDetailsView setBackgroundColor:[UIColor blackColor]];
+    UIImageView *backgroundDetails = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"images/background_GameView"]];
+    [buildingDetailsView addSubview:backgroundDetails];
+    [backgroundDetails setFrame:CGRectMake(0, 0, buildingDetailsView.frame.size.width, buildingDetailsView.frame.size.height)];
+    [self.view addSubview:buildingDetailsView];
+        //
+    closeDetailsView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeDetailsView setBackgroundColor:[UIColor clearColor]];
+    [closeDetailsView setBackgroundImage:[UIImage imageNamed:@"images/CloseButton"] forState:UIControlStateNormal];
+    [closeDetailsView setFrame:CGRectMake(0, 0, 40, 40)];
+    [closeDetailsView setFrame: CGRectMake(buildingDetailsView.frame.origin.x-20, buildingDetailsView.frame.origin.y-20, 40, 40)];
+    [closeDetailsView setHidden:YES];
+    [self.view addSubview:closeDetailsView];
+    
+    
     //DATA - AFTER
 	//Note: this is done here beacuse he needs first to create the actual UI items to populate
     [self BuildBuildings];
@@ -256,6 +276,18 @@ NSDictionary *oneBuilding;
     
 }
 
+- (void) ShowBuildingDetailsForIndex: (int) my_index {
+    
+    //set view
+    
+    //show view
+    [buildingDetailsView setHidden:NO];
+    [closeDetailsView setHidden:NO];
+    [self.view bringSubviewToFront:closeDetailsView];
+    
+}
+
+
 
 
 //Buildings management
@@ -315,12 +347,16 @@ NSDictionary *oneBuilding;
                                      [[buildingsArray[i] valueForKey:@"y"] floatValue],
                                       buildingImage.size.width,
                                       buildingImage.size.height)];
+        [aButton setTag:i]; //reference to itself (see OpenBuildingDetails:)
+        [aButton addTarget:self action:@selector(OpenBuildingDetails:) forControlEvents:UIControlEventTouchUpInside];
         
         //store building/button
         [buildingsButtons addObject:aButton];
         
         
         //add building/button to map
+        //DEBUG if (i>0) [buildingsButtons[i] setAlpha:.5];
+        //DEBUG if (i>4) [buildingsButtons[i] setAlpha:.0];
         [mapScrollView addSubview:buildingsButtons[i]];
         
         //
@@ -330,6 +366,17 @@ NSDictionary *oneBuilding;
     }
         
 }
+
+- (void) OpenBuildingDetails: (id) sender {
+    //Note, a Buton called this
+    //Which button? check the tag property
+    UIButton *senderButton = sender;
+    NSLog(@" PRESSED ON %i", senderButton.tag);
+    
+    [self ShowBuildingDetailsForIndex:senderButton.tag];
+    
+}
+
 
 
 //XML Parser
